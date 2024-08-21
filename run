@@ -1,0 +1,47 @@
+#!/bin/bash
+
+freeze() {
+    pip3 freeze > requirements.txt
+}
+
+create_venv() {
+    python3 -m venv .venv
+}
+
+install_libraries() {
+    pip3 install -r requirements.txt
+}
+
+create_kernel() {
+    python3 -m ipykernel install --user --name=nb_text_mining
+}
+
+export_model() {
+    python3 build/model-export.py
+}
+
+info() {
+    echo "-h   --help"
+    echo "-cv  --create-venv"
+    echo "-ck  --create-kernel"
+    echo "-e   --export        : export model py to pkl"
+    echo "-f   --freeze        : export all libraries to txt"
+    echo "-i   --install       : install all libraries"
+}
+
+if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+    info
+elif [ "$1" = "-cv" ] || [ "$1" = "--create-venv" ]; then
+    create_venv
+elif [ "$1" = "-ck" ] || [ "$1" = "--create-kernel" ]; then
+    create_kernel
+elif [ "$1" = "-e" ] || [ "$1" = "--export" ]; then
+    export_model
+elif [ "$1" = "-f" ] || [ "$1" = "--freeze" ]; then
+    freeze
+elif [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
+    install_libraries
+else
+    echo "Unknown option: $1"
+    info
+fi

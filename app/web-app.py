@@ -8,9 +8,16 @@ load_dotenv()
 BASE_DIR = os.getenv('BASE_DIR')
 model_file = os.path.join(BASE_DIR, 'dist/text-mining.pkl')
 vectorizer_file = os.path.join(BASE_DIR, 'dist/vectorizer.pkl')
+icon_file = os.path.join(BASE_DIR, 'app/icon.png')
 
 model = joblib.load(model_file)
 vectorizer = joblib.load(vectorizer_file)
+
+st.set_page_config(
+    page_title="MTS 45 Wiradesa: Berikan saranmu",
+    page_icon=icon_file,
+    initial_sidebar_state="expanded"
+)
 
 st.title("Berikan saranmu disini!")
 st.subheader('MTS 45 Wiradesa')

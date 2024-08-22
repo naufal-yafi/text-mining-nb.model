@@ -20,10 +20,15 @@ export_model() {
     python3 build/model-export.py
 }
 
+run_server() {
+    streamlit run app/web-app.py
+}
+
 info() {
     echo "-h   --help"
     echo "-cv  --create-venv"
     echo "-ck  --create-kernel"
+    echo "-s   --streamlit     : running streamlit"
     echo "-e   --export        : export model py to pkl"
     echo "-f   --freeze        : export all libraries to txt"
     echo "-i   --install       : install all libraries"
@@ -41,6 +46,8 @@ elif [ "$1" = "-f" ] || [ "$1" = "--freeze" ]; then
     freeze
 elif [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
     install_libraries
+elif [ "$1" = "-s" ] || [ "$1" = "--streamlit" ]; then
+    run_server
 else
     echo "Unknown option: $1"
     info

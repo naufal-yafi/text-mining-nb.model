@@ -1,16 +1,15 @@
 # Text Mining: Naive Bayes
 
 # Table of Content
+
 - [Text Mining: Naive Bayes](#text-mining-naive-bayes)
 - [Table of Content](#table-of-content)
   - [Libraries](#libraries)
   - [Software Required](#software-required)
   - [How to use this project](#how-to-use-this-project)
+  - [Preprocessing Data](#preprocessing-data)
   - [Export model to PKL](#export-model-to-pkl)
   - [Running App](#running-app)
-  - [](#)
-        - [PROJECT BUILD USING ARCH LINUX](#project-build-using-arch-linux)
-
 
 ## Libraries
 
@@ -54,7 +53,14 @@ sh run -i
 cp .env.example .env
 ```
 
-Add field `BASE_DIR=`
+Add field `BASE_DIR=`  
+Example: /home/..user/text-mining or /home/..user/..your_folder/text-mining
+
+## Preprocessing Data
+
+```sh
+sh run -p
+```
 
 ## Export model to PKL
 
@@ -75,7 +81,3 @@ sh run -e
 ```sh
 sh run -s
 ```
-
-##
-
-##### PROJECT BUILD USING ARCH LINUX

@@ -1,54 +1,89 @@
 #!/bin/bash
 
 freeze() {
-    pip3 freeze > requirements.txt
+  pip3 freeze >requirements.txt
 }
 
 create_venv() {
-    python3 -m venv .venv
+  python3 -m venv .venv
 }
 
 install_libraries() {
-    pip3 install -r requirements.txt
+  pip3 install -r requirements.txt
 }
 
 create_kernel() {
-    python3 -m ipykernel install --user --name=nb_text_mining
+  python3 -m ipykernel install --user --name=nb_text_mining
 }
 
 export_model() {
-    python3 build/model-export.py
+  echo "Please wait... generate buid/model-export.py"
+  python3 build/model-export.py
+  echo "Finish         generate buid/model-export.py"
+  echo
+}
+
+preprocessing_data() {
+  echo "Please wait... Step 1: Translate to Indonesian"
+  python3 data/pre-processing/1_translated/translated.py
+
+  echo "Please wait... Step 2: Clear Duplicate Text"
+  python3 data/pre-processing/2_clear-duplicate/clear-duplicate-text.py
+
+  echo "Please wait... Step 3: Selected Data"
+  echo "Output on ./data/pre-processing/3_selected/aduan-siswa.csv"
+  echo
+
+  echo "Please wait... Step 4: Case Folding"
+  python3 data/pre-processing/4_case-folding/case-folding.py
+
+  echo "Please wait... Step 5: Cleaning"
+  python3 data/pre-processing/5_cleaning/cleaning.py
+
+  echo "Please wait... Step 6: Filtering"
+  python3 data/pre-processing/6_filtering/stopwords.py
+
+  echo "Please wait... Step 7: Stemming"
+  python3 data/pre-processing/7_stemming/stemming.py
+
+  echo "Please wait... Step 8: Labeling"
+  python3 data/pre-processing/8_labeling/labeling.py
+
+  echo "...FINISH"
 }
 
 run_server() {
-    streamlit run app/web-app.py
+  streamlit run app/web-app.py
 }
 
 info() {
-    echo "-h   --help"
-    echo "-cv  --create-venv"
-    echo "-ck  --create-kernel"
-    echo "-s   --streamlit     : running streamlit"
-    echo "-e   --export        : export model py to pkl"
-    echo "-f   --freeze        : export all libraries to txt"
-    echo "-i   --install       : install all libraries"
+  echo "-h   --help"
+  echo "-cv  --create-venv"
+  echo "-ck  --create-kernel"
+  echo "-p   --preprocessing : manage raw data"
+  echo "-s   --streamlit     : running streamlit"
+  echo "-e   --export        : export model py to pkl"
+  echo "-f   --freeze        : export all libraries to txt"
+  echo "-i   --install       : install all libraries"
 }
 
 if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
-    info
+  info
 elif [ "$1" = "-cv" ] || [ "$1" = "--create-venv" ]; then
-    create_venv
+  create_venv
+elif [ "$1" = "-p" ] || [ "$1" = "--preprocessing" ]; then
+  preprocessing_data
 elif [ "$1" = "-ck" ] || [ "$1" = "--create-kernel" ]; then
-    create_kernel
+  create_kernel
 elif [ "$1" = "-e" ] || [ "$1" = "--export" ]; then
-    export_model
+  export_model
 elif [ "$1" = "-f" ] || [ "$1" = "--freeze" ]; then
-    freeze
+  freeze
 elif [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
-    install_libraries
+  install_libraries
 elif [ "$1" = "-s" ] || [ "$1" = "--streamlit" ]; then
-    run_server
+  run_server
 else
-    echo "Unknown option: $1"
-    info
+  echo "Unknown option: $1"
+  info
 fi

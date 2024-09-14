@@ -41,6 +41,7 @@ matplotlib-inline==0.1.7
 mdurl==0.1.2
 narwhals==1.5.2
 nest-asyncio==1.6.0
+nltk==3.9.1
 numpy==2.1.0
 packaging==24.1
 pandas==2.2.2
@@ -62,10 +63,12 @@ python-dotenv==1.0.1
 pytz==2024.1
 pyzmq==26.1.1
 referencing==0.35.1
+regex==2024.9.11
 requests==2.32.3
 rfc3986==1.5.0
 rich==13.7.1
 rpds-py==0.20.0
+Sastrawi==1.0.1
 scikit-learn==1.5.1
 scipy==1.14.1
 seaborn==0.13.2
@@ -78,6 +81,7 @@ tenacity==8.5.0
 threadpoolctl==3.5.0
 toml==0.10.2
 tornado==6.4.1
+tqdm==4.66.5
 traitlets==5.14.3
 typing_extensions==4.12.2
 tzdata==2024.1

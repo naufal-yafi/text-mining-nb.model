@@ -37,8 +37,8 @@ if st.button(
 ):
     if not input_text.strip():
         popup_placeholder.error("Tolong untuk mengisi form saran terlebih dahulu sebelum mengirimnya.")
-    elif len(input_text.split()) < 6:
-        popup_placeholder.error("Saran harus terdiri dari minimal 6 kata.")
+    elif len(input_text) < 12:
+        popup_placeholder.error("Saran harus terdiri dari minimal 12 huruf.")
     else:
         popup_placeholder.success("Terimakasih telah memberikan saran, kami akan memprosesnya segera.")
         st.write("Hasil:")

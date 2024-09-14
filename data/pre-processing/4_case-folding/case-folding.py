@@ -4,8 +4,8 @@ import pandas as pd
 
 load_dotenv()
 
-output_path = "./data/pre-processing/4_case-folding/case-folding-aduan-siswa.csv"
-input_path = "data/pre-processing/3_selected/aduan-siswa.csv"
+output_path = './data/pre-processing/4_case-folding/case-folding-aduan-siswa.csv'
+input_path = 'data/pre-processing/3_selected/aduan-siswa.csv'
 
 BASE_DIR = os.getenv('BASE_DIR')
 csv_file = os.path.join(BASE_DIR, input_path)

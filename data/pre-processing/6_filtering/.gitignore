@@ -1,1 +1,2 @@
 *.csv
+!filtered-aduan-siswa.csv

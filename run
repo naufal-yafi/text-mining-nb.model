@@ -19,8 +19,6 @@ create_kernel() {
 export_model() {
   echo "Please wait... generate buid/model-export.py"
   python3 build/model-export.py
-  echo "Finish         generate buid/model-export.py"
-  echo
 }
 
 preprocessing_data() {
@@ -41,7 +39,7 @@ preprocessing_data() {
   python3 data/pre-processing/5_cleaning/cleaning.py
 
   echo "Please wait... Step 6: Filtering"
-  python3 data/pre-processing/6_filtering/stopwords.py
+  python3 data/pre-processing/6_filtering/filtering.py
 
   echo "Please wait... Step 7: Stemming"
   python3 data/pre-processing/7_stemming/stemming.py

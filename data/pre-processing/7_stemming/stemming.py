@@ -6,7 +6,7 @@ from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 load_dotenv()
 
 output_path = './data/pre-processing/7_stemming/stemming-aduan-siswa.csv'
-input_path = 'data/pre-processing/6_filtering/filtering-aduan-siswa.csv'
+input_path = 'data/pre-processing/6_filtering/filtered-aduan-siswa.csv'
 
 BASE_DIR = os.getenv('BASE_DIR')
 csv_file = os.path.join(BASE_DIR, input_path)

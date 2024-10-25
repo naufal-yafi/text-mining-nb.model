@@ -2,6 +2,7 @@ import streamlit as st
 import os
 from dotenv import load_dotenv
 import joblib
+from helpers.fetch import post
 
 load_dotenv()
 
@@ -35,12 +36,26 @@ if st.button(
   type="primary",
   use_container_width=True
 ):
+  MIN_LENGTH = 12
+  
   if not input_text.strip():
     popup_placeholder.error("Tolong untuk mengisi form saran terlebih dahulu sebelum mengirimnya.")
-  elif len(input_text) < 12:
-    popup_placeholder.error("Saran harus terdiri dari minimal 12 huruf.")
+  elif len(input_text) < MIN_LENGTH:
+    popup_placeholder.error(f"Saran harus terdiri dari minimal {MIN_LENGTH} huruf.")
   else:
-    popup_placeholder.success("Terimakasih telah memberikan saran, kami akan memprosesnya segera.")
-    st.write("Hasil:")
     predict = model.predict(vectorizer.transform([input_text]))
-    st.write(predict)
+    getLabel = predict[0]
+    
+    res = post(
+      request_body={
+        "message": input_text,
+        "label": getLabel,
+      },
+      route='/messages'
+    )
+    
+    if res == 201:
+      popup_placeholder.success("Terima kasih telah memberikan saran, kami akan memprosesnya segera.")
+    else:
+      popup_placeholder.error("Gagal mengunggah saran, server ada masalah. Mohon tunggu dan mencoba beberapa saat lagi.")
+    

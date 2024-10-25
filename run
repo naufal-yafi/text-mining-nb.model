@@ -22,30 +22,20 @@ export_model() {
 }
 
 preprocessing_data() {
-  echo "Please wait... Step 1: Translate to Indonesian"
-  python3 data/pre-processing/1_translated/translated.py
+  echo "Please wait... Step 1: Case Folding"
+  python3 data/preprocessing/1-case-folding/case-folding.py
 
-  echo "Please wait... Step 2: Clear Duplicate Text"
-  python3 data/pre-processing/2_clear-duplicate/clear-duplicate-text.py
+  echo "Please wait... Step 2: Cleaning"
+  python3 data/preprocessing/2-cleaning/cleaning.py
 
-  echo "Please wait... Step 3: Selected Data"
-  echo "Output on ./data/pre-processing/3_selected/aduan-siswa.csv"
-  echo
+  echo "Please wait... Step 3: Filtering"
+  python3 data/preprocessing/3-filtering/filtering.py
 
-  echo "Please wait... Step 4: Case Folding"
-  python3 data/pre-processing/4_case-folding/case-folding.py
+  echo "Please wait... Step 4: Stemming"
+  python3 data/preprocessing/4-stemming/stemming.py
 
-  echo "Please wait... Step 5: Cleaning"
-  python3 data/pre-processing/5_cleaning/cleaning.py
-
-  echo "Please wait... Step 6: Filtering"
-  python3 data/pre-processing/6_filtering/filtering.py
-
-  echo "Please wait... Step 7: Stemming"
-  python3 data/pre-processing/7_stemming/stemming.py
-
-  echo "Please wait... Step 8: Labeling"
-  python3 data/pre-processing/8_labeling/labeling.py
+  echo "Please wait... Step 5: Labeling"
+  python3 data/preprocessing/5-labeling/labeling.py
 
   echo "...FINISH"
 }

@@ -5,22 +5,22 @@ from stopwords import load_stopwords, remove_stopwords
 
 load_dotenv()
 
+# csv file
+input_path = 'data/preprocessing/2-cleaning/dataset-cleaning.csv'
+output_path = './data/preprocessing/3-filtering/dataset-filtering.csv'
+# stopword file
+stopword_path = 'data/preprocessing/3-filtering/stopword-list.txt'
+
 BASE_DIR = os.getenv('BASE_DIR')
-
-output_path = './data/pre-processing/6_filtering/filtering-aduan-siswa.csv'
-input_stopword_path = 'data/pre-processing/6_filtering/stopword-list.txt'
-input_csv_path = 'data/pre-processing/5_cleaning/cleaning-aduan-siswa.csv'
-# input_csv_path = 'data/pre-processing/6_filtering/filtered-aduan-siswa.csv'
-
-stopword_file = os.path.join(BASE_DIR, input_stopword_path)
-csv_file = os.path.join(BASE_DIR, input_csv_path)
+stopword_file = os.path.join(BASE_DIR, stopword_path)
+csv_file = os.path.join(BASE_DIR, input_path)
 
 try:
   stopwords = load_stopwords(stopword_file)
   df = pd.read_csv(csv_file)
 except Exception as err:
   print(f'Err: {err}\n')
-
+  
 if 'Aduan' in df.columns:
   try:
     df['Aduan'] = df['Aduan'].apply(lambda text: remove_stopwords(text, stopwords))

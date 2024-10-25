@@ -9,7 +9,7 @@ import joblib
 load_dotenv()
 
 BASE_DIR = os.getenv('BASE_DIR')
-csv_file = os.path.join(BASE_DIR, 'dist/aduan-siswa.csv')
+csv_file = os.path.join(BASE_DIR, 'dist/new-dataset.csv')
 df = pd.read_csv(csv_file)
 
 output_path_model = './dist/text-mining.pkl'

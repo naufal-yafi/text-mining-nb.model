@@ -16,3 +16,5 @@ bagi
 hal
 aku
 anda
+untuk
+di

@@ -25,6 +25,8 @@ try:
   model.fit(X_train, y_train)
   
   joblib.dump(model, output_path_model)
+  
+  vectorizer.fit_transform(X_text)
   joblib.dump(vectorizer, output_path_vectorizer)
   exit("Success: creating model. Output on folder ./dist")
 except Exception as err:

@@ -26,5 +26,6 @@ try:
   
   joblib.dump(model, output_path_model)
   joblib.dump(vectorizer, output_path_vectorizer)
+  exit("Success: creating model. Output on folder ./dist")
 except Exception as err:
   error(err)

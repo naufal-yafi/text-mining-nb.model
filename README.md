@@ -1,82 +1,61 @@
+![py version](https://img.shields.io/badge/python3-v_3.12.5-blue) ![pip version](https://img.shields.io/badge/pip3-v_24.2-blue) ![os](https://img.shields.io/badge/alpine_linux-v_3.17.0-blue)
+
 # Text Mining: Naive Bayes
 
-# Table of Content
+This repository is an implementation of `text mining` to classify texts into **Kurikulum**, **Kesiswaan** or **Prasarana** categories using the `Multinomial Naive Bayes` algorithm.
 
-- [Text Mining: Naive Bayes](#text-mining-naive-bayes)
-- [Table of Content](#table-of-content)
-  - [Libraries](#libraries)
-  - [Software Required](#software-required)
-  - [How to use this project](#how-to-use-this-project)
-  - [Preprocessing Data](#preprocessing-data)
-  - [Export model to PKL](#export-model-to-pkl)
-  - [Running App](#running-app)
+# How to use this project:
 
-## Libraries
+## 1. Setup
 
-[[See all libraries use in this project](./requirements.txt)]
+- Create VENV
+  ```sh
+  sh run -cv
+  ```
+- Activate VENV  
+  1. Linux/MacOS:
+      ```sh
+      source active
+      ```
+  2. Windows (cmd):
+      ```sh
+      venv\Scripts\activate.bat
+      ```
+  3.  Windows (powershell):
+      ```sh
+      venv\Scripts\Activate.ps1
+      ```
+- Create kernel (optional)
+  ```sh
+  sh run -ck
+  ```
+- Install all libraries
+  ```sh
+  sh run -i
+  ```
+- Setup custom package
+  ```sh
+  pip install -e .
+  ```
+- Setup environment variable  
+  Field value variable on `.env`
+  ```sh
+  cp .env.example .env
+  ```
 
-## Software Required
-
-1. Jupyter Notebook
-2. Python
-3. Pip
-
-## How to use this project
-
-1. Create VENV
-
-```sh
-sh run -cv
-```
-
-2. Activate VENV
-
-```sh
-source active
-```
-
-3. Create Kernel
-
-```sh
-sh run -ck
-```
-
-4. Install All Libraries
-
-```sh
-sh run -i
-```
-
-5. Setup file .env
-
-```sh
-cp .env.example .env
-```
-
-Add field `BASE_DIR=`  
-Example: /home/..user/text-mining or /home/..user/..your_folder/text-mining
-
-## Preprocessing Data
+## 2. Preprocessing Data
 
 ```sh
 sh run -p
 ```
 
-## Export model to PKL
+## 3. Creating Model
 
 ```sh
 sh run -e
 ```
 
-## Running App
-
-1. Export model to PKL
-
-```sh
-sh run -e
-```
-
-2. Run server app
+## 4. Running App
 
 ```sh
 sh run -s

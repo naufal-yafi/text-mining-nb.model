@@ -17,31 +17,42 @@ create_kernel() {
 }
 
 export_model() {
-  echo "Please wait... generate buid/model-export.py"
-  python3 build/model-export.py
+  echo "Please wait... generate create/model"
+  python3 src/create-model.py
+}
+
+prepare_datasample() {
+  BASE_PATH="src/data/dataset-sample"
+
+  echo "Please wait... Step 1: Translated"
+  python3 $BASE_PATH/1_translated/translated.py
+  echo "Please wait... Step 2: Clear Duplicate"
+  python3 $BASE_PATH/2_clear-duplicate/clear-duplicate.py
+  echo "Please wait... Step 3: Selected"
+  echo "Success: output on ./$BASE_PATH/3_selected/selected-dataset.csv"
+
+  echo "...FINISH"
 }
 
 preprocessing_data() {
+  BASE_PATH="src/data/preprocessing"
+
   echo "Please wait... Step 1: Case Folding"
-  python3 data/preprocessing/1-case-folding/case-folding.py
-
+  python3 $BASE_PATH/1_case-folding/case_folding.py
   echo "Please wait... Step 2: Cleaning"
-  python3 data/preprocessing/2-cleaning/cleaning.py
-
+  python3 $BASE_PATH/2_cleaning/cleaning.py
   echo "Please wait... Step 3: Filtering"
-  python3 data/preprocessing/3-filtering/filtering.py
-
+  python3 $BASE_PATH/3_filtering/filtering.py
   echo "Please wait... Step 4: Stemming"
-  python3 data/preprocessing/4-stemming/stemming.py
-
+  python3 $BASE_PATH/4_stemming/stemming.py
   echo "Please wait... Step 5: Labeling"
-  python3 data/preprocessing/5-labeling/labeling.py
+  python3 $BASE_PATH/5_labeling/labeling.py
 
   echo "...FINISH"
 }
 
 run_server() {
-  streamlit run app/web-app.py
+  streamlit run src/app/web-app.py
 }
 
 info() {
@@ -53,10 +64,13 @@ info() {
   echo "-e   --export        : export model py to pkl"
   echo "-f   --freeze        : export all libraries to txt"
   echo "-i   --install       : install all libraries"
+  echo "-d   --data-sample   : run processing data sample"
 }
 
 if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
   info
+elif [ "$1" = "-d" ] || [ "$1" = "--data-sample" ]; then
+  prepare_datasample
 elif [ "$1" = "-cv" ] || [ "$1" = "--create-venv" ]; then
   create_venv
 elif [ "$1" = "-p" ] || [ "$1" = "--preprocessing" ]; then
